@@ -2,17 +2,16 @@ defmodule Eris do
   @moduledoc """
   Documentation for `Eris`.
   """
+  use Application
 
-  @doc """
-  Hello world.
+  def start(_type, _args) do
+    children = [
+      Nosedrum.Storage.Dispatcher,
+      Eris.Core.CommandHandler
+    ]
 
-  ## Examples
-
-      iex> Eris.hello()
-      :world
-
-  """
-  def hello do
-    :world
+    options = [strategy: :one_for_one, name: Eris.Supervisor]
+    Supervisor.start_link(children, options)
   end
+
 end
