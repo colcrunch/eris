@@ -11,10 +11,8 @@ defmodule Eris do
       Nosedrum.Storage.Dispatcher,
       Eris.Core.CommandHandler
     ]
-    IO.inspect(children)
 
     listeners = Eris.Core.ListenerLoader.load_all()
-    IO.inspect(listeners)
     children = children ++ listeners
 
     options = [strategy: :one_for_one, name: Eris.Supervisor]
