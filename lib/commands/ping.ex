@@ -1,4 +1,4 @@
-defmodule Eris.Commands.Core.Ping do
+defmodule Eris.Commands.Ping do
   require Logger
 
   @behaviour Nosedrum.ApplicationCommand

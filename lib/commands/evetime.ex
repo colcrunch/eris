@@ -1,4 +1,4 @@
-defmodule Eris.Commands.Core.EveTime do
+defmodule Eris.Commands.EveTime do
   require Logger
 
   @behaviour Nosedrum.ApplicationCommand
