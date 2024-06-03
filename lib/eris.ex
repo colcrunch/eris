@@ -9,7 +9,8 @@ defmodule Eris do
   def start(_type, _args) do
     children = [
       Nosedrum.Storage.Dispatcher,
-      Eris.Core.CommandHandler
+      Eris.Core.CommandHandler,
+      Eris.Repo
     ]
 
     listeners = Eris.Core.ListenerLoader.load_all()
