@@ -16,7 +16,39 @@ defmodule Eris.Commands.Welcome do
       %{
         type: :sub_command,
         name: "set_welcome",
-        description: "Sets the welcome config for this server."
+        description: "Sets the welcome config for this server.",
+        options: [
+          %{
+            type: :channel,
+            name: "welcome_channel",
+            description: "The channel to send welcome messages in.",
+            required: true,
+          },
+          %{
+            type: :channel,
+            name: "recruit_channel",
+            description: "The channel for recruitment discussions to happen in.",
+            required: true
+          },
+          %{
+            type: :role,
+            name: "grant_role",
+            description: "The role to grant to those interested in joining.",
+            required: true
+          },
+          %{
+            type: :role,
+            name: "recruiter_role",
+            description: "The role that all recruiters will have.",
+            required: true
+          },
+          %{
+            type: :string,
+            name: "message",
+            description: "The message you would like to be publicly displayed to users when they join.",
+            required: true
+          }
+        ]
       },
       %{
         type: :sub_command,
@@ -27,8 +59,11 @@ defmodule Eris.Commands.Welcome do
   end
 
   @impl true
-  def command(%Interaction{data: %{options: [%{name: "set_welcome"}]}}), do: [content: "XX"]
-  def command(%Interaction{data: %{options: [%{name: "get_welcome"}]}}), do: [content: "YY"]
+  def command(%Interaction{data: %{options: [%{name: "set_welcome"}]}} = intr) do
+    IO.inspect(intr)
+    [content: intr.guild_id]
+  end
+  def command(%Interaction{data: %{options: [%{name: "get_welcome"}]}} = _intr), do: [content: "YY"]
 
   @impl true
   def type(), do: :slash
